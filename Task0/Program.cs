@@ -1,8 +1,8 @@
 ﻿using System;
-using static com.GitHub.Reiqen.Corrector;
-using static com.GitHub.Reiqen.Functions;
+using static com.GitHub.Reiqen.Task0.Corrector;
+using static com.GitHub.Reiqen.Task0.Functions;
 
-namespace com.GitHub.Reiqen
+namespace com.GitHub.Reiqen.Task0
 {
     /*
         This is the extraction point of the program.
@@ -78,6 +78,8 @@ namespace com.GitHub.Reiqen
                 }
                 else Console.WriteLine("Введенное вами значение отличается от положительного целого числа!");
             }
+
+            // The end of the program
             Console.WriteLine("\nСпасибо за пользование программой.\nНажмите любую клавишу для выхода.");
             Console.ReadKey();
         }

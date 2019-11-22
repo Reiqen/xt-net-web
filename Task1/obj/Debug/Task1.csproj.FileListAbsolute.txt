@@ -1,0 +1,6 @@
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\bin\Debug\Task1.exe.config
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\bin\Debug\Task1.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\bin\Debug\Task1.pdb
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\obj\Debug\Task1.csprojAssemblyReference.cache
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\obj\Debug\Task1.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task1\obj\Debug\Task1.pdb

@@ -1,7 +1,7 @@
 ﻿using System;
 using static System.Math;
 
-namespace com.GitHub.Reiqen
+namespace com.GitHub.Reiqen.Task0
 {
     /*
         This class provides methods to perform actions for task needs.

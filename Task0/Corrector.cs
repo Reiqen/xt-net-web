@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace com.GitHub.Reiqen
+namespace com.GitHub.Reiqen.Task0
 {
     /*
         This class provides methods to check if the number which is read from input is valid for further operations.
