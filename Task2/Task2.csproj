@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{016A4C18-F010-47BC-8FF2-16CD5DC52635}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Task2</RootNamespace>
+    <AssemblyName>Task2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="entities\Circle.cs" />
+    <Compile Include="entities\Employee.cs" />
+    <Compile Include="entities\Figure.cs" />
+    <Compile Include="entities\Line.cs" />
+    <Compile Include="entities\MyString.cs" />
+    <Compile Include="entities\Rectangle.cs" />
+    <Compile Include="entities\Ring.cs" />
+    <Compile Include="entities\Round.cs" />
+    <Compile Include="entities\Triangle.cs" />
+    <Compile Include="entities\User.cs" />
+    <Compile Include="game\Apple.cs" />
+    <Compile Include="game\Barrier.cs" />
+    <Compile Include="game\Bear.cs" />
+    <Compile Include="game\Bonus.cs" />
+    <Compile Include="game\Character.cs" />
+    <Compile Include="game\Cherry.cs" />
+    <Compile Include="game\Direction.cs" />
+    <Compile Include="game\Field.cs" />
+    <Compile Include="game\IAttackable.cs" />
+    <Compile Include="game\IMovable.cs" />
+    <Compile Include="game\IStoppable.cs" />
+    <Compile Include="game\IUpable.cs" />
+    <Compile Include="game\Monster.cs" />
+    <Compile Include="game\Player.cs" />
+    <Compile Include="game\Skills.cs" />
+    <Compile Include="game\Stone.cs" />
+    <Compile Include="game\Tree.cs" />
+    <Compile Include="game\Wolf.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\Corrector.cs" />
+    <Compile Include="utils\Performer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
