@@ -4,9 +4,9 @@ namespace com.GitHub.Reiqen.Task2.entities
 {
     class MyString
     {
-        public string First { get; set; }
-        public string Second { get; set; }
-        public char Ch { get; set; }
+        public string FirstString { get; set; }
+        public string SecondString { get; set; }
+        public char Symbol { get; set; }
 
         private char[] ConvertToChar(string str)
         {
@@ -69,9 +69,9 @@ namespace com.GitHub.Reiqen.Task2.entities
         {
             string info = string.Format("Равны ли строки - {0}, общая строка - {1}," +
                                         " позиция символа в первой и второй строках соответственно: {2}",
-                                        IsSame(ConvertToChar(First), ConvertToChar(Second)),
-                                        ConvertToString(Concat(ConvertToChar(First), ConvertToChar(Second))),
-                                        string.Join(", ", Search(ConvertToChar(First), ConvertToChar(Second), Ch))) ;
+                                        IsSame(ConvertToChar(FirstString), ConvertToChar(SecondString)),
+                                        ConvertToString(Concat(ConvertToChar(FirstString), ConvertToChar(SecondString))),
+                                        string.Join(", ", Search(ConvertToChar(FirstString), ConvertToChar(SecondString), Symbol))) ;
             return info;
         }
     }

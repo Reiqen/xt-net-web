@@ -4,6 +4,10 @@ using static com.GitHub.Reiqen.Task2.utils.Performer;
 
 namespace com.GitHub.Reiqen.Task2
 {
+    /*
+        This is the extraction point of the program.
+        It solves tasks from the third exercise.
+    */
     class Program
     {
         public static String ValueToCheck;

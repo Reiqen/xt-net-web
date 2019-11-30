@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\Corrector.cs" />
     <Compile Include="utils\Performer.cs" />
+    <Compile Include="utils\ValueSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

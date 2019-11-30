@@ -1,26 +1,32 @@
-﻿using static System.Math;
+﻿using System;
+using static System.Math;
 
 namespace com.GitHub.Reiqen.Task2.entities
 {
-    class Triangle
+    class Triangle : Figure
     {
         public double A { get; set; }
         public double B { get; set; }
         public double C { get; set; }
 
-        private double GetPerimeter() => this.A + this.B + this.C;
+        private double GetPerimeter() => A + B + C;
 
         private double GetArea()
         {
-            double p = GetPerimeter() / 2;
-            return Sqrt(p * (p - this.A) * (p - this.B) * (p - this.C));
+            double p = GetPerimeter() / 2F;
+            double result = Sqrt(p * (p - A) * (p - B) * (p - C));
+            return result;
         }
 
-        public override string ToString()
+        public override string Info()
         {
-            string info = string.Format("Треугольник со сторонами {0}, {1}, {2}, периметр: {3}, площадь: {4}.",
-                A, B, C, GetPerimeter(), GetArea());
-            return info;
+            if (double.IsNaN(GetArea())) return "Одна из сторон треугольника больше суммы двух других, указанный треугольник не существует";
+            else
+            {
+                string info = string.Format("Треугольник со сторонами {0}, {1}, {2}, периметр: {3}, площадь: {4}.",
+                  A, B, C, GetPerimeter(), GetArea());
+                return info;
+            }
         }
     }
 }
