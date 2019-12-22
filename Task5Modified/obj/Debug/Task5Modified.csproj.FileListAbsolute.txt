@@ -1,0 +1,6 @@
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\bin\Debug\Task5Modified.exe.config
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\bin\Debug\Task5Modified.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\bin\Debug\Task5Modified.pdb
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\obj\Debug\Task5Modified.csprojAssemblyReference.cache
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\obj\Debug\Task5Modified.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5Modified\obj\Debug\Task5Modified.pdb

@@ -32,15 +32,15 @@ namespace com.GitHub.Reiqen.Task4
                     }
                 }
             }
-            Notify?.Invoke("Sorting Finished");
+            Notify?.Invoke("Sorting finished");
         }
 
         public void ThreadSort<T>(T[] arr, Func<T, T, int> compare)
         {
-            lock ("")
-            {
-                Task.Factory.StartNew(() => Sort(arr, compare));
-            }
+            ThreadStart thStart = new ThreadStart(() => Sort(arr, compare));
+            Thread th = new Thread(thStart);
+            th.Start();
+            th.Join();
         }
 
         public static int CompareString(string s, string t)

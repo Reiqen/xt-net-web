@@ -1,0 +1,8 @@
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\obj\Debug\Task5.csprojAssemblyReference.cache
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\bin\Debug\Task5.exe.config
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\bin\Debug\Task5.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\bin\Debug\Task5.pdb
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\obj\Debug\Interop.Shell32.dll
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\obj\Debug\Task5.csproj.ResolveComReference.cache
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\obj\Debug\Task5.exe
+C:\Users\reiqe\source\repos\RomanKuznetcovTasks\Task5\obj\Debug\Task5.pdb
