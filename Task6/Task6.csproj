@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0AE5EE71-1FDF-41E7-8006-34FAFF183559}</ProjectGuid>
+    <ProjectGuid>{04894339-E57B-4D1A-930C-989AF08E2EBD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task5Modified</RootNamespace>
-    <AssemblyName>Task5Modified</AssemblyName>
+    <RootNamespace>Task6</RootNamespace>
+    <AssemblyName>Task6</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backup.cs" />
-    <Compile Include="InformerThread.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BLL\BL.cs" />
+    <Compile Include="BLL\IUserBL.cs" />
+    <Compile Include="DAL\IUserDao.cs" />
+    <Compile Include="DAL\UsersDAO.cs" />
+    <Compile Include="Dependencies\DependencyResolver.cs" />
+    <Compile Include="Entities\Award.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="PL\Corrector.cs" />
+    <Compile Include="PL\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Users.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
