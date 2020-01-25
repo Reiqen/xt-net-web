@@ -1,0 +1,42 @@
+body {
+  font: 1em/1.2 "Times New Roman";
+  color: #fff;
+  background-color: #000;
+}
+
+p {
+	margin: 0;
+	text-align: center;
+}
+
+.section {
+	width: 60%;  
+	margin: 100px auto 0;
+}
+
+.article {
+	position: relative;
+	border: 3px solid #C2E1F5;  
+	padding: 20px 15px;
+	background-color: #88B7D5;
+}
+
+.article::before,
+.article::after {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+}
+
+.article::before {
+	margin-left: -40px;
+	border: 40px solid transparent;
+	border-bottom-color: #C2E1F5;
+}
+
+.article::after {
+	margin-left: -34px;
+	border: 34px solid transparent;
+	border-bottom-color: #88B7D5;
+}

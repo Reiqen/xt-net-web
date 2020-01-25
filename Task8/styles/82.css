@@ -1,0 +1,43 @@
+form {
+	width: 400px;
+	border: 2px solid #0075b2;
+	background: #0690cf;
+	color: #fff;
+	text-align: left; 
+	font: 16px sans-serif;
+	padding: 25px 0 20px 0;
+}
+
+form div {
+	padding: 0 0 10px 25px;
+	font-size: 23px;
+	border-bottom: 1px solid #fff;
+}
+
+form p {
+	margin: 0;
+	padding-top: 30px;
+	padding-left: 25px;
+}
+
+form p:nth-child(odd) {
+	padding-top: 22px;
+}
+
+label {
+	display: inline-block;
+	margin: 0 16px 0 0;
+	font-size: 16px;
+}
+
+input {margin-top: 4px;}
+	.e-mail {width: 320px;}
+	.pass {width: 150px;}
+
+input[type="submit"] {
+	background: #ffdf7f;
+	color: #000;
+	border: none;
+	margin: 2px;
+	padding: 6px 8px;
+}

@@ -1,0 +1,39 @@
+body {
+	background: black;
+}
+
+div {
+	background: linear-gradient(to top, #DEDEDE, #fff);
+	width: 50%;
+	margin: auto;
+	padding: 50px 10px 10px 10px;
+	font-family: Arial;
+	border-radius: 0 0 10px 10px;
+	position: relative;
+	border: 2px solid white;
+}
+
+div:before {
+	content: '';
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	display: block;
+	background: black;
+	color: #FFB163;
+	text-align: right;
+	padding: 10px;
+	top: -2px;
+	left: -16px;
+	transform: skewX(-25deg);
+}
+  
+div:after {
+	content: 'ЭКГ-5';
+	position: absolute;
+	display: block;
+	color: #FFB163;
+	font: bold 2em Arial;
+	top: 5px;
+	left: 2px;
+}
