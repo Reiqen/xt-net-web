@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Task 9.1</title>
+	</head>
+	<body>
+		<input type="text" id="stringToCheck" value="У попа была собака">
+		<button type="button" onclick="perform()">Get result</button>
+		<script>
+			function perform(){
+				var stringToCheck = document.getElementById("stringToCheck").value;
+				var symbolsToIgnore = ["?", "!", ":", ";", ",", ".", " ", "\t", "\r"];
+				var letters = {}, result;
+				var words = stringToCheck.split(' ');
+ 
+				words.forEach(function (word) {
+					word.split('').forEach(function (letter, i) {
+						if (!letters[letter] && symbolsToIgnore.indexOf(letter) == -1 && -1 != word.indexOf(letter, i + 1)) {
+							letters[letter] = 1;
+						}
+					});
+				});
+ 
+			result = stringToCheck.split('').filter(function (v) {
+				return !letters[v];
+			}).join('');
+			alert(result);
+			}
+		</script>
+	</body>
+</html>

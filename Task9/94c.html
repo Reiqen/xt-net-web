@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Task 9.4</title>
+		<style type="text/css">
+			p {font-size: 60px; color: green;}
+		</style>
+	</head>
+	<body>
+		<H1>Page 3</H1>
+		<p id="timer"></p>
+		<button id="stop" onclick="stop()">Stop</button>
+		<button id="resume" onclick="start()">Resume</button>
+		<button id="previousPage" onclick="window.location.href = '94b.html';">Previous Page</button>
+		<script>
+			var timeLeft = 5;
+			document.getElementById("timer").innerHTML = timeLeft;
+			function start(){
+				downloadTimer = setInterval(function() {
+					timeLeft--;
+					document.getElementById("timer").innerHTML = timeLeft;
+					if (timeLeft <= 0) {
+						clearInterval(downloadTimer);
+						if (confirm("Press 'OK' to begin fron the scratch or 'Cancel' to close the window")) {
+							window.location.href = '94a.html';
+						}
+						else {
+							self.close();
+						}
+					}
+				}, 1000);
+			}start()
+			function stop() {
+				clearInterval(downloadTimer);
+			}
+		</script>
+	</body>
+</html>

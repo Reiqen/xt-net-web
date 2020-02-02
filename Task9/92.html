@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Task 9.2</title>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="input" value="3.5 +4*10-5.3 /5 = " />
+				<input type="button" 
+				value="calculate" 
+				onclick="getElementById('result').value = calculate(getElementById('input').value)" />
+		</div>
+
+		<div>
+			<input type="text" id="result" />
+		</div>
+		<script>
+			function calculate(input) {
+
+			var operations = {
+				addition: '+',
+				subtraction: '-',
+				division: '/',
+				multiplication: '*',
+			};
+
+			operations.operationsOrder = [
+				[
+					[operations.multiplication],
+					[operations.division],
+				],
+				[
+					[operations.addition],
+					[operations.subtraction]
+				]
+			];
+
+			input = input.replace(/\s/g, '');
+			var output;
+			
+			for (var i = 0, n = operations.operationsOrder.length; i < n; i++) {
+				var calculation = new RegExp('(\\d+\\.?\\d*)([\\' + operations.operationsOrder[i].join('\\') + '])(\\d+\\.?\\d*)');
+				calculation.lastIndex = 0;
+
+				while (calculation.test(input)) {
+					output = _calculate(RegExp.$1, RegExp.$2, RegExp.$3);
+					if (isNaN(output) || !isFinite(output)) return output;
+					input = input.replace(calculation, output);
+				}
+			}
+
+			return output;
+
+				function _calculate(a, operation, b) {
+					a = a * 1;
+					b = b * 1;
+					switch (operation) {
+						case operations.addition: return a + b;
+						break;
+						case operations.subtraction: return a - b;
+						break;
+						case operations.division: return a / b;
+						break;
+						case operations.multiplication: return a * b;
+						break;
+						default: null;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
