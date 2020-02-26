@@ -1,0 +1,398 @@
+﻿@using com.GitHub.Reiqen.Task10_11.Dependencies;
+@using com.GitHub.Reiqen.Task10_11.Entities;
+
+@{
+    Layout = null;
+    var webClient = new WebClient();
+    byte[] defaultImage = webClient.DownloadData("https://image.shutterstock.com/image-vector/no-image-available-sign-absence-260nw-373243873.jpg");
+    var personsBl = DependencyResolver.PersonsBL;
+    IEnumerable<Person> persons = personsBl.GetPersons();
+    var awardsBl = DependencyResolver.AwardsBL;
+    IEnumerable<Award> awards = awardsBl.GetAwards();
+    var usersBl = DependencyResolver.UsersBL;
+    IEnumerable<User> users = usersBl.GetUsers();
+    var rolesBl = DependencyResolver.RolesBL;
+    IEnumerable<Role> roles = rolesBl.GetRoles();
+
+
+
+    if (IsPost)
+    {
+        if (Request["CreatePersonSubmitted"] == "true")
+        {
+            string name = Convert.ToString(Request.Form["name"]);
+            if (DateTime.TryParse(Convert.ToString(Request.Form["date"]), out DateTime dateOfBirth))
+            {
+                dateOfBirth.ToString("dd.MM.yyyy");
+            }
+            byte[] byteArray = webClient.DownloadData(Request.Form["image"]);
+            personsBl.CreatePerson(name, dateOfBirth, byteArray);
+        }
+        else if (Request["AddAwardSubmitted"] == "true")
+        {
+            int person_id = Convert.ToInt32(Request.Form["person_id"]);
+            int award_id = Convert.ToInt32(Request.Form["award_id"]);
+            personsBl.AddAward(person_id, award_id);
+        }
+        else if (Request["RemoveAwardSubmitted"] == "true")
+        {
+            int person_id = Convert.ToInt32(Request.Form["person_id"]);
+            int award_id = Convert.ToInt32(Request.Form["award_id"]);
+            personsBl.RemoveAward(person_id, award_id);
+        }
+        else if (Request["UpdatePersonSubmitted"] == "true")
+        {
+            int person_id = Convert.ToInt32(Request.Form["person_id"]);
+            string name = Convert.ToString(Request.Form["name"]);
+            if (DateTime.TryParse(Convert.ToString(Request.Form["date"]), out DateTime dateOfBirth))
+            {
+                dateOfBirth.ToString("dd.MM.yyyy");
+            }
+            byte[] byteArray = webClient.DownloadData(Request.Form["image"]);
+            personsBl.UpdatePerson(person_id, name, dateOfBirth, byteArray);
+        }
+        else if (Request["DeletePersonSubmitted"] == "true")
+        {
+            int person_id = Convert.ToInt32(Request.Form["person_id"]);
+            personsBl.DeletePerson(person_id);
+        }
+        else if (Request["CreateAwardSubmitted"] == "true")
+        {
+            string title = Convert.ToString(Request.Form["title"]);
+            byte[] byteArray = webClient.DownloadData(Request.Form["image"]);
+            awardsBl.CreateAward(title, byteArray);
+        }
+        else if (Request["UpdateAwardSubmitted"] == "true")
+        {
+            int award_id = Convert.ToInt32(Request.Form["award_id"]);
+            string title = Convert.ToString(Request.Form["title"]);
+            byte[] byteArray = webClient.DownloadData(Request.Form["image"]);
+            awardsBl.UpdateAward(award_id, title, byteArray);
+        }
+        else if (Request["DeleteAwardSubmitted"] == "true")
+        {
+            int award_id = Convert.ToInt32(Request.Form["award_id"]);
+            awardsBl.DeleteAward(award_id);
+        }
+        else if (Request["ChangeRoleSubmitted"] == "true")
+        {
+            int user_id = Convert.ToInt32(Request.Form["user_id"]);
+            int role_id = Convert.ToInt32(Request.Form["role_id"]);
+            string login = "";
+            string password = "";
+            foreach (var user in users)
+            {
+                if (user_id == user.user_id)
+                {
+                    login = user.login;
+                    password = user.password;
+                }
+            }
+            usersBl.UpdateUser(user_id, role_id, login, password);
+        }
+        Response.Redirect(Request.RawUrl);
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style type="text/css">
+        div {
+            display: inline-block;
+        }
+
+        table {
+            display: block;
+        }
+
+        .border {
+            border: 4px double black;
+        }
+    </style>
+</head>
+<body>
+    <div>User: @User.Identity.Name</div>
+    <br>
+    <div>
+        <span>Role: </span>
+        @if (User.IsInRole("Guest"))
+        {
+            <span>Guest</span>
+        }
+        else if (User.IsInRole("Registered"))
+        {
+            <span>Registered</span>
+        }
+        else if (User.IsInRole("Administrator"))
+        {
+            <span>Administrator</span>
+        }
+    </div>
+    <br>
+    <div>
+        Persons:<br>
+        <table border="1">
+            <tr>
+                <th>Image</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Age</th>
+                @if (User.IsInRole("Registered") || User.IsInRole("Administrator"))
+                {
+                    <th colspan="100%">Awards</th>
+                }
+            </tr>
+            @foreach (var person in persons)
+            {
+                <tr>
+                    <td>
+                        @if (person.image == null)
+                        {
+                            <img src="data:image/*;base64,@System.Convert.ToBase64String(defaultImage, 0, defaultImage.Length)" alt=@(person.name) width="75" height="75" />
+                        }
+                        else
+                        {
+                            <img src="data:image/*;base64,@System.Convert.ToBase64String(person.image, 0, person.image.Length)" alt=@(person.name) width="75" height="75" />
+                        }
+                    </td>
+                    <td>
+                        @person.person_id
+                    </td>
+                    <td>
+                        @person.name
+                    </td>
+                    <td>
+                        @person.dateOfBirth.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        @person.age
+                    </td>
+                    @if (User.IsInRole("Registered") || User.IsInRole("Administrator"))
+                    {
+                        foreach (var award in person.awards)
+                        {
+                            <td>
+                                @award.title
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    @if (User.IsInRole("Registered") || User.IsInRole("Administrator"))
+    {
+        <div>
+            Awards existing:<br>
+            <table border="1">
+                <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                </tr>
+                @foreach (var award in awards)
+                {
+                    <tr>
+                        <td>
+                            @if (award.image == null)
+                            {
+                                <img src="data:image/*;base64,@System.Convert.ToBase64String(defaultImage, 0, defaultImage.Length)" alt=@(award.title) width="75" height="75" />
+                            }
+                            else
+                            {
+                                <img src="data:image/*;base64,@System.Convert.ToBase64String(award.image, 0, award.image.Length)" alt=@(award.title) width="75" height="75" />
+                            }
+                        </td>
+                        <td>
+                            @award.award_id
+                        </td>
+                        <td>
+                            @award.title
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    @if (User.IsInRole("Administrator"))
+    {
+        <br>
+        <br>
+        <div class="border">
+            <div>
+                Create new person:
+                <form method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" value="@Request.Form["name"]">
+                    <label for="date">Date of birth:</label>
+                    <input type="text" name="date" value="@Request.Form["date"]">
+                    <label for="image">Link to a picture:</label>
+                    <input type="text" name="image" value="@Request.Form["image"]">
+                    <input type="hidden" name="CreatePersonSubmitted" value="true">
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Add new award to a person:
+                <form method="post">
+                    <label for="person_id">Person ID:</label>
+                    <input type="text" name="person_id" value="@Request.Form["person_id"]">
+                    <label for="award_id">Award ID:</label>
+                    <input type="text" name="award_id" value="@Request.Form["award_id"]">
+                    <input type="hidden" name="AddAwardSubmitted" value="true">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Remove an award from a person:
+                <form method="post">
+                    <label for="person_id">Person ID:</label>
+                    <input type="text" name="person_id" value="@Request.Form["person_id"]">
+                    <label for="award_id">Award ID:</label>
+                    <input type="text" name="award_id" value="@Request.Form["award_id"]">
+                    <input type="hidden" name="RemoveAwardSubmitted" value="true">
+                    <button type="submit">Remove</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Update a person:
+                <form method="post">
+                    <label for="person_id">Person ID:</label>
+                    <input type="text" name="person_id" value="@Request.Form["person_id"]">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" value="@Request.Form["name"]">
+                    <label for="date">Date of birth:</label>
+                    <input type="text" name="date" value="@Request.Form["date"]">
+                    <label for="image">Link to a picture:</label>
+                    <input type="text" name="image" value="@Request.Form["image"]">
+                    <input type="hidden" name="UpdatePersonSubmitted" value="true">
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Delete a person:
+                <form method="post">
+                    <label for="person_id">Person ID:</label>
+                    <input type="text" name="person_id" value="@Request.Form["person_id"]">
+                    <input type="hidden" name="DeletePersonSubmitted" value="true">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="border">
+            <div>
+                Create new award:
+                <form method="post">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" value="@Request.Form["title"]">
+                    <label for="image">Link to a picture:</label>
+                    <input type="text" name="image" value="@Request.Form["image"]">
+                    <input type="hidden" name="CreateAwardSubmitted" value="true">
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Update an award:
+                <form method="post">
+                    <label for="award_id">Award ID:</label>
+                    <input type="text" name="award_id" value="@Request.Form["award_id"]">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" value="@Request.Form["title"]">
+                    <label for="image">Link to a picture:</label>
+                    <input type="text" name="image" value="@Request.Form["image"]">
+                    <input type="hidden" name="UpdateAwardSubmitted" value="true">
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                Delete an award:
+                <form method="post">
+                    <label for="award_id">Award ID:</label>
+                    <input type="text" name="award_id" value="@Request.Form["award_id"]">
+                    <input type="hidden" name="DeleteAwardSubmitted" value="true">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div>
+            Users:<br>
+            <table border="1">
+                <tr>
+                    <th>User ID</th>
+                    <th>Role ID</th>
+                    <th>Role description</th>
+                    <th>Login</th>
+                </tr>
+                @foreach (var user in users)
+                {
+                    <tr>
+                        <td>
+                            @user.user_id
+                        </td>
+                        <td>
+                            @user.role_id
+                        </td>
+                        <td>
+                            @user.role
+                        </td>
+                        <td>
+                            @user.login
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div>
+            Roles:<br>
+            <table border="1">
+                <tr>
+                    <th>Role ID</th>
+                    <th>Title</th>
+                </tr>
+                @foreach (var role in roles)
+                {
+                    <tr>
+                        <td>
+                            @role.role_id
+                        </td>
+                        <td>
+                            @role.title
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            Change the role:
+            <form method="post">
+                <label for="user_id">User ID:</label>
+                <input type="text" name="user_id" value="@Request.Form["user_id"]">
+                <label for="role_id">Role ID:</label>
+                <input type="text" name="role_id" value="@Request.Form["role_id"]">
+                <input type="hidden" name="ChangeRoleSubmitted" value="true">
+                <button type="submit">Change</button>
+            </form>
+        </div>
+    }
+    <br>
+    <br>
+    <button onclick="location.href = '/PL/signout';">Sign Out</button>
+</body>
+</html>
